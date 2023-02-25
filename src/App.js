@@ -1,12 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './pages/Home';
 function App() {
 	return (
 		<>
-			<div className=' h-screen w-full fcm'>
-				<span className=' text-4xl font-bold '>Lipon Roy Here...</span>
-				<span className=' text-2xl font-shantell'>Project Started...</span>
-			</div>
+			<Home></Home>
 		</>
 	);
 }
