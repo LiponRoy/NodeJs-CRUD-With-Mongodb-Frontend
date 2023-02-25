@@ -43,5 +43,7 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.2.6"
-  }
+  },
+   "proxy": "https://nodejs-crud-with-mongodb-api.onrender.com"
 }
+
