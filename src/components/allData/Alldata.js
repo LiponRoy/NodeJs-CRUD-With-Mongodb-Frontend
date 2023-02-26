@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
 import Axios from 'axios';
+import Data from './Data';
 const Alldata = () => {
 	// const baseURL = '/data/all';
 	const [post, setPost] = React.useState([]);
@@ -13,18 +14,9 @@ const Alldata = () => {
 	return (
 		<div className=' m-14'>
 			<span className=' text-2xl'>Instractor data</span>
-			{post ? (
-				post.map((data) => (
-					<div key={data._id} className=' bg-slate-300 p-5 my-5 flex flex-col'>
-						<span>{data.name}</span>
-						<span>{data.email}</span>
-						<span>{data.address}</span>
-						<span>{data.status}</span>
-					</div>
-				))
-			) : (
-				<span> no data found</span>
-			)}
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+				{post ? post.map((data) => <Data id={data._id} name={data.name} email={data.email} address={data.address} status={data.status}></Data>) : <span> no data found</span>}
+			</div>
 		</div>
 	);
 };
