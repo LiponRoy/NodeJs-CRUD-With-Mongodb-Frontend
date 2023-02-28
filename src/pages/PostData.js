@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { AddData } from '../feature/InstructorSlice';
 // yup schema
 const schema = yup
 	.object({
@@ -20,6 +23,9 @@ const schema = yup
 //End yup schema
 
 const PostData = () => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { isLoading, message } = useSelector((state) => state.InstructorReducer);
 	// yup schema and hook form
 	const {
 		register,
@@ -32,6 +38,9 @@ const PostData = () => {
 	// End yup schema and hook form
 	const onSubmit = (data) => {
 		console.log(data);
+		dispatch(AddData(data));
+
+		navigate('/');
 	};
 	return (
 		<>
@@ -50,13 +59,13 @@ const PostData = () => {
 						<p className='errMessage'>{errors.address?.message}</p>
 						<input className={inputDesign} placeholder='Status' type='text' {...register('status')} />
 						<p className='errMessage'>{errors.status?.message}</p>
-						<input className='myBtn-Outline' type='submit' />
+						<input className='myBtn-Outline' disabled={isLoading} type='submit' />
 					</form>
 				</div>
 			</div>
 		</>
 	);
 };
-const inputDesign = 'w-[250px] md:w-[350px] p-2 my-1 rounded-md border-2 border-primary bg-slate-100';
+const inputDesign = 'w-[250px] md:w-[350px] p-2 my-1 rounded-md border-2 border-primary';
 
 export default PostData;

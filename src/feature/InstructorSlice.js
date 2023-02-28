@@ -52,10 +52,12 @@ export const deleteData = createAsyncThunk('instructor/deleteData', async (id, t
 	}
 });
 
-export const productSlice = createSlice({
+export const InstructorSlice = createSlice({
 	name: 'instructor',
 	initialState,
-	reducers: {},
+	reducers: {
+		reset: (state) => initialState,
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(AddData.pending, (state) => {
@@ -105,5 +107,5 @@ export const productSlice = createSlice({
 			});
 	},
 });
-
-export default productSlice.reducer;
+export const { reset } = InstructorSlice.actions;
+export default InstructorSlice.reducer;
