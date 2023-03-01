@@ -19,7 +19,7 @@ const Alldata = () => {
 		if (dataAll) {
 			dispatch(getData());
 		}
-	}, [isError, message, dispatch, Data]);
+	}, [isError, message, dispatch]);
 
 	const dataAdd = () => {
 		navigate('/postData');
@@ -35,7 +35,7 @@ const Alldata = () => {
 				</div>
 			) : (
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-					{dataAll ? dataAll.map((data) => <Data id={data._id} name={data.name} email={data.email} address={data.address} status={data.status}></Data>) : <span> no data found</span>}
+					{dataAll ? dataAll.map((data) => <Data key={data._id} id={data._id} name={data.name} email={data.email} address={data.address} status={data.status}></Data>) : <span> no data found</span>}
 				</div>
 			)}
 		</div>

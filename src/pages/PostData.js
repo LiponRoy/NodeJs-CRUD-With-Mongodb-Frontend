@@ -23,6 +23,7 @@ const schema = yup
 //End yup schema
 
 const PostData = () => {
+	// const [createTask, { isLoading }] = useCreateTaskMutation();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { isLoading, message } = useSelector((state) => state.InstructorReducer);
@@ -36,7 +37,6 @@ const PostData = () => {
 	});
 
 	// End yup schema and hook form
-
 	function goHome() {
 		navigate('/');
 	}
@@ -44,6 +44,8 @@ const PostData = () => {
 		console.log(data);
 		dispatch(AddData(data));
 		setTimeout(goHome, 4000);
+
+		navigate('/');
 	};
 	return (
 		<>
@@ -60,9 +62,15 @@ const PostData = () => {
 						<p className='errMessage'>{errors.phone?.message}</p>
 						<input className={inputDesign} placeholder='Address' type='text' {...register('address')} />
 						<p className='errMessage'>{errors.address?.message}</p>
-						<input className={inputDesign} placeholder='Status' type='text' {...register('status')} />
+						<div className={selectDesign}>
+							<label>Select activity :</label>
+							<select {...register('status')}>
+								<option value='Active'>active</option>
+								<option value='Passive'>passive</option>
+							</select>
+						</div>
 						<p className='errMessage'>{errors.status?.message}</p>
-						{isLoading ? <span>Posting...</span> : <input className='myBtn-Outline' type='submit' />}
+						{isLoading ? <span>Loading</span> : <input className='myBtn-Outline' disabled={isLoading} type='submit' />}
 					</form>
 				</div>
 			</div>
@@ -70,5 +78,6 @@ const PostData = () => {
 	);
 };
 const inputDesign = 'w-[250px] md:w-[350px] p-2 my-1 rounded-md border-2 border-primary';
+const selectDesign = 'w-[250px] md:w-[350px] p-2 my-1 ';
 
 export default PostData;

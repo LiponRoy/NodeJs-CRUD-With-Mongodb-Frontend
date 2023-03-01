@@ -8,7 +8,7 @@ const Data = ({ id, name, email, address, status }) => {
 
 	return (
 		<div>
-			<div key={id} className=' bg-gray-200 shadow-md text-gray-700  p-5 my-5 flex flex-col rounded-md gap-1'>
+			<div className=' bg-gray-200 shadow-md text-gray-700  p-5 my-5 flex flex-col rounded-md gap-1'>
 				<FaUserAlt className=' mb-2' size={32}></FaUserAlt>
 				<span className=' text-2xl font-bold underline'>{name}</span>
 				<div className='flex items-center'>
@@ -27,6 +27,9 @@ const Data = ({ id, name, email, address, status }) => {
 				<div className=' flex items-center justify-between mt-2'>
 					<Button onClick={() => navigate(`/deleteConfirm/${id}`)} className='myBtn' href=''>
 						DELETE
+					</Button>
+					<Button onClick={() => navigate(`/viewData/${id}`)} className='myBtn' href=''>
+						View
 					</Button>
 					<Button className='myBtn' href=''>
 						UPDATE
