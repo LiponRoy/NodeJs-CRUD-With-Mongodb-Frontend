@@ -24,15 +24,21 @@ const ViewData = () => {
 			{isLoading ? (
 				<span>Loading...</span>
 			) : (
-				<div className=' bg-gray-200 shadow-md text-gray-700  p-5 my-5 flex flex-col justify-start rounded-md gap-1'>
-					<FaUserAlt className=' mb-2' size={64}></FaUserAlt>
-					<span className=' text-4xl font-bold'>{singleData.name}</span>
-					<span className=' text-xl font-bold'>{singleData.email}</span>
-					<span className=' text-xl font-bold'>{singleData.address}</span>
-					<span className=' text-xl font-bold'>{singleData.status}</span>
-					<Button onClick={() => navigate('/')} className='  cursor-pointer mt-2 text-[12px]'>
+				<div className=''>
+					<div className='fm bg-gray-200 shadow-md text-gray-700  p-10 my-5 rounded-md'>
+						<div className=' mr-4'>
+							<FaUserAlt size={94}></FaUserAlt>
+						</div>
+						<div className='flex flex-col justify-start gap-2'>
+							<span className=' text-4xl font-bold'>Name : {singleData.name}</span>
+							<span className=' text-2xl font-bold'>Email : {singleData.email}</span>
+							<span className=' text-2xl font-bold'>Address : {singleData.address}</span>
+							<span className=' text-2xl font-bold'>Status : {singleData.status}</span>
+						</div>
+					</div>
+					<a onClick={() => navigate('/')} className='  cursor-pointer mt-2 p-2 text-[12px] border-2 border-gray-300'>
 						GO BACK
-					</Button>
+					</a>
 				</div>
 			)}
 		</div>

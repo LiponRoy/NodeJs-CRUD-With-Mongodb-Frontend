@@ -29,7 +29,7 @@ const DeleteConfirm = () => {
 						<Button disabled={isLoading} variant='contained' color='error' onClick={() => handleDelete(id)} className=' w-40 h-14 fm'>
 							Delete !
 						</Button>
-						<a onClick={() => navigate('/')} className=' text-white cursor-pointer mt-2 text-[12px]'>
+						<a onClick={() => navigate('/')} className='  cursor-pointer mt-2 p-2 text-[12px] border-2 border-gray-300'>
 							GO BACK
 						</a>
 					</div>

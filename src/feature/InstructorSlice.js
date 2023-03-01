@@ -52,6 +52,25 @@ export const deleteData = createAsyncThunk('instructor/deleteData', async (_id, 
 	}
 });
 
+// update
+export const updateData = createAsyncThunk('instructor/updateData', async (myData, { rejectWithValue }) => {
+	try {
+		const { _id, name, email, phone, address, status } = myData;
+
+		const response = await axios.put('/update/' + _id, {
+			name,
+			email,
+			phone,
+			address,
+			status,
+		});
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return rejectWithValue(error.response?.data);
+	}
+});
+
 export const InstructorSlice = createSlice({
 	name: 'instructor',
 	initialState,
@@ -90,6 +109,18 @@ export const InstructorSlice = createSlice({
 				state.singleData = action.payload;
 			})
 			.addCase(getOneData.rejected, (state, action) => {
+				state.isLoading = false;
+				state.message = action.payload;
+			})
+			.addCase(updateData.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(updateData.fulfilled, (state, action) => {
+				const updatedData = state.dataAll.map((todo) => (todo._id === action.payload._id ? action.payload : todo));
+				state.isLoading = false;
+				state.dataAll = updatedData;
+			})
+			.addCase(updateData.rejected, (state, action) => {
 				state.isLoading = false;
 				state.message = action.payload;
 			})

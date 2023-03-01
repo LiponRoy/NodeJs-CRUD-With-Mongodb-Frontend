@@ -44,8 +44,6 @@ const PostData = () => {
 		console.log(data);
 		dispatch(AddData(data));
 		setTimeout(goHome, 4000);
-
-		navigate('/');
 	};
 	return (
 		<>

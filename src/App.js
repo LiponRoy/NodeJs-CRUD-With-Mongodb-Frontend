@@ -5,6 +5,7 @@ import PostData from './pages/PostData';
 import NotFound from './pages/NotFound';
 import DeleteConfirm from './components/allData/DeleteConfirm';
 import ViewData from './pages/ViewData';
+import UpdateData from './pages/UpdateData';
 function App() {
 	return (
 		<>
@@ -13,6 +14,7 @@ function App() {
 					<Route path='/' element={<Home />} />
 					<Route path='/postData' element={<PostData />} />
 					<Route path='/viewData/:id' element={<ViewData />} />
+					<Route path='/updateData/:id' element={<UpdateData />} />
 					<Route path='/deleteConfirm/:id' element={<DeleteConfirm />} />
 					<Route path='*' element={<NotFound />} />
 				</Routes>
