@@ -42,9 +42,9 @@ export const getOneData = createAsyncThunk('instructor/getOneData', async (id, t
 	}
 });
 // Delete user Data
-export const deleteData = createAsyncThunk('instructor/deleteData', async (id, thunkAPI) => {
+export const deleteData = createAsyncThunk('instructor/deleteData', async (_id, thunkAPI) => {
 	try {
-		const response = await axios.delete('/data/delete/' + id);
+		const response = await axios.delete('/data/delete/' + _id);
 		return response.data;
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -55,9 +55,7 @@ export const deleteData = createAsyncThunk('instructor/deleteData', async (id, t
 export const InstructorSlice = createSlice({
 	name: 'instructor',
 	initialState,
-	reducers: {
-		reset: (state) => initialState,
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(AddData.pending, (state) => {
@@ -99,7 +97,9 @@ export const InstructorSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(deleteData.fulfilled, (state, action) => {
+				const currentTodos = state.dataAll.filter((todo) => todo._id !== action.payload._id);
 				state.isLoading = false;
+				state.dataAll = currentTodos;
 			})
 			.addCase(deleteData.rejected, (state, action) => {
 				state.isLoading = false;
@@ -107,5 +107,5 @@ export const InstructorSlice = createSlice({
 			});
 	},
 });
-export const { reset } = InstructorSlice.actions;
+
 export default InstructorSlice.reducer;

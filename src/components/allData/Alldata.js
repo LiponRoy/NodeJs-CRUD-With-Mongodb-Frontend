@@ -11,26 +11,26 @@ const Alldata = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { dataAll, isLoading, isError, message } = useSelector((state) => state.InstructorReducer);
-
+	console.log(dataAll);
 	useEffect(() => {
 		if (isError) {
-			console.log(message);
+			console.log(isError);
 		}
 		if (dataAll) {
 			dispatch(getData());
 		}
-	}, [isError, message, dispatch]);
+	}, [isError, message, dispatch, Data]);
 
 	const dataAdd = () => {
 		navigate('/postData');
 	};
 
 	return (
-		<div className=' m-8'>
+		<div className=' m-14'>
 			<button onClick={() => dataAdd()}>Add Data</button>
 			<span className=' text-2xl'>Instractor data</span>
 			{isLoading ? (
-				<div className=' h-[80vh] w-full fm '>
+				<div className=' h-[80vh] w-full fm'>
 					<CircularProgress color='inherit' />
 				</div>
 			) : (

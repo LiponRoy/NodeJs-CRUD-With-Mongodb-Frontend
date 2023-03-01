@@ -1,7 +1,11 @@
+import { Button } from '@mui/material';
 import React from 'react';
 import { FaUserAlt, FaRegEnvelope, FaGlobe } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Data = ({ id, name, email, address, status }) => {
+	const navigate = useNavigate();
+
 	return (
 		<div>
 			<div key={id} className=' bg-gray-200 shadow-md text-gray-700  p-5 my-5 flex flex-col rounded-md gap-1'>
@@ -21,12 +25,12 @@ const Data = ({ id, name, email, address, status }) => {
 				</div>
 
 				<div className=' flex items-center justify-between mt-2'>
-					<buton className='myBtn' href=''>
+					<Button onClick={() => navigate(`/deleteConfirm/${id}`)} className='myBtn' href=''>
 						DELETE
-					</buton>
-					<button className='myBtn' href=''>
+					</Button>
+					<Button className='myBtn' href=''>
 						UPDATE
-					</button>
+					</Button>
 				</div>
 			</div>
 		</div>

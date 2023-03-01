@@ -36,11 +36,14 @@ const PostData = () => {
 	});
 
 	// End yup schema and hook form
+
+	function goHome() {
+		navigate('/');
+	}
 	const onSubmit = (data) => {
 		console.log(data);
 		dispatch(AddData(data));
-
-		navigate('/');
+		setTimeout(goHome, 4000);
 	};
 	return (
 		<>
@@ -59,7 +62,7 @@ const PostData = () => {
 						<p className='errMessage'>{errors.address?.message}</p>
 						<input className={inputDesign} placeholder='Status' type='text' {...register('status')} />
 						<p className='errMessage'>{errors.status?.message}</p>
-						<input className='myBtn-Outline' disabled={isLoading} type='submit' />
+						{isLoading ? <span>Posting...</span> : <input className='myBtn-Outline' type='submit' />}
 					</form>
 				</div>
 			</div>
