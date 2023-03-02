@@ -26,7 +26,7 @@ const UpdateData = () => {
 		if (singleData) {
 			setData(singleData);
 		}
-	}, []);
+	}, [id]);
 
 	const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
@@ -51,22 +51,22 @@ const UpdateData = () => {
 			<Card title='Edit a new student'>
 				<Row gutter={[0, 20]}>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter title' name='title' value={data.name} onChange={handleChange} disabled={isLoading || !data.name} />
+						<Input size='large' placeholder='Enter title' name='title' value={data.name} onChange={handleChange} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter otherText' name='otherText' value={data.email} onChange={handleChange} disabled={isLoading || !data.email} />
+						<Input size='large' placeholder='Enter otherText' name='otherText' value={data.email} onChange={handleChange} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.phone} onChange={handleChange} disabled={isLoading || !data.phone} />
+						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.phone} onChange={handleChange} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.address} onChange={handleChange} disabled={isLoading || !data.address} />
+						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.address} onChange={handleChange} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.status} onChange={handleChange} disabled={isLoading || !data.status} />
+						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.status} onChange={handleChange} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Button htmlType='submit' loading={isLoading} disabled={isLoading || Object.values(data).every((el) => el == '')} type='primary'>
+						<Button htmlType='submit' loading={isLoading} disabled={isLoading} type='primary'>
 							Update Student
 						</Button>
 					</Col>

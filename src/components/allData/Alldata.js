@@ -11,7 +11,7 @@ const Alldata = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { dataAll, isLoading, isError, message } = useSelector((state) => state.InstructorReducer);
-	console.log(dataAll);
+
 	useEffect(() => {
 		if (isError) {
 			console.log(isError);
@@ -35,7 +35,9 @@ const Alldata = () => {
 				</div>
 			) : (
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-					{dataAll ? dataAll.map((data) => <Data key={data._id} id={data._id} name={data.name} email={data.email} address={data.address} status={data.status}></Data>) : <span> no data found</span>}
+					{dataAll?.map((data) => (
+						<Data key={data._id} id={data._id} name={data.name} email={data.email} address={data.address} status={data.status}></Data>
+					))}
 				</div>
 			)}
 		</div>

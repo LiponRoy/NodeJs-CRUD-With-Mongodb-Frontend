@@ -57,7 +57,7 @@ export const updateData = createAsyncThunk('instructor/updateData', async (myDat
 	try {
 		const { _id, name, email, phone, address, status } = myData;
 
-		const response = await axios.put('/update/' + _id, {
+		const response = await axios.put('/data/update/' + _id, {
 			name,
 			email,
 			phone,
