@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import PostData from './pages/PostData';
 import NotFound from './pages/NotFound';
-import DeleteConfirm from './components/allData/DeleteConfirm';
 import ViewData from './pages/ViewData';
 import UpdateData from './pages/UpdateData';
 function App() {
@@ -15,7 +14,6 @@ function App() {
 					<Route path='/postData' element={<PostData />} />
 					<Route path='/viewData/:id' element={<ViewData />} />
 					<Route path='/updateData/:id' element={<UpdateData />} />
-					<Route path='/deleteConfirm/:id' element={<DeleteConfirm />} />
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</Router>

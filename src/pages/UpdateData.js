@@ -23,12 +23,10 @@ const UpdateData = () => {
 
 	useEffect(() => {
 		dispatch(getOneData(id));
-		if (singleData) {
-			setData(singleData);
-		}
-	}, [id]);
+		setData();
+	}, []);
 
-	const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
+	const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value });                
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -51,19 +49,19 @@ const UpdateData = () => {
 			<Card title='Edit a new student'>
 				<Row gutter={[0, 20]}>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter title' name='title' value={data.name} onChange={handleChange} disabled={isLoading} />
+						<Input size='large' placeholder='Enter title' onChange={handleChange} name='title' value={data.name} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter otherText' name='otherText' value={data.email} onChange={handleChange} disabled={isLoading} />
+						<Input size='large' placeholder='Enter otherText' onChange={handleChange} name='otherText' value={data.email} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.phone} onChange={handleChange} disabled={isLoading} />
+						<Input size='large' placeholder='Enter mobile_no' onChange={handleChange} name='mobile_no' value={data.phone} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.address} onChange={handleChange} disabled={isLoading} />
+						<Input size='large' placeholder='Enter mobile_no' onChange={handleChange} name='mobile_no' value={data.address} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
-						<Input size='large' placeholder='Enter mobile_no' name='mobile_no' value={data.status} onChange={handleChange} disabled={isLoading} />
+						<Input size='large' placeholder='Enter mobile_no' onChange={handleChange} name='mobile_no' value={data.status} disabled={isLoading} />
 					</Col>
 					<Col span={24}>
 						<Button htmlType='submit' loading={isLoading} disabled={isLoading} type='primary'>

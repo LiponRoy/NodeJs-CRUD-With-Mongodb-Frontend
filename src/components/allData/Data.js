@@ -1,10 +1,40 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import { FaUserAlt, FaRegEnvelope, FaGlobe } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { deleteData } from '../../feature/InstructorSlice';
+import Notiflix from 'notiflix';
 
 const Data = ({ id, name, email, address, status }) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const handleDelete = (myId) => {
+		dispatch(deleteData(myId));
+	};
+
+	// for confirm dialogue
+	const confirmDelete = (id) => {
+		Notiflix.Confirm.show(
+			'Delete this item',
+			'Do you delete it ?',
+			'Delete',
+			'NO',
+			function okCb() {
+				handleDelete(id);
+				setTimeout(() => {
+					window.location.reload();
+				}, 500);
+			},
+			function cancelCb() {},
+			{
+				width: '320px',
+				borderRadius: '8px',
+				// etc...
+			},
+		);
+	};
 
 	return (
 		<div>
@@ -25,7 +55,7 @@ const Data = ({ id, name, email, address, status }) => {
 				</div>
 
 				<div className=' flex items-center justify-between mt-2'>
-					<Button onClick={() => navigate(`/deleteConfirm/${id}`)} className='myBtn' href=''>
+					<Button onClick={() => confirmDelete(id)} className='myBtn' href=''>
 						DELETE
 					</Button>
 					<Button onClick={() => navigate(`/viewData/${id}`)} className='myBtn' href=''>
