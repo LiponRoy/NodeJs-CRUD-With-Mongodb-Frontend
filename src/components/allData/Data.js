@@ -61,7 +61,7 @@ const Data = ({ id, name, email, address, status }) => {
 					<Button onClick={() => navigate(`/viewData/${id}`)} className='myBtn' href=''>
 						View
 					</Button>
-					<Button onClick={() => navigate(`/updateData/${id}`)} className='myBtn' href=''>
+					<Button onClick={() => navigate(`/postData/${id}`)} className='myBtn' href=''>
 						UPDATE
 					</Button>
 				</div>

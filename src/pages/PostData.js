@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import { AddData } from '../feature/InstructorSlice';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AddData, updateData } from '../feature/InstructorSlice';
 // yup schema
 const schema = yup
 	.object({
@@ -26,6 +26,8 @@ const PostData = () => {
 	// const [createTask, { isLoading }] = useCreateTaskMutation();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const { id } = useParams();
+	console.log('perams data----', id);
 	const { isLoading, message } = useSelector((state) => state.InstructorReducer);
 	// yup schema and hook form
 	const {
@@ -41,15 +43,16 @@ const PostData = () => {
 		navigate('/');
 	}
 	const onSubmit = (data) => {
+		id ? dispatch(updateData(data)) : dispatch(AddData(data));
 		console.log(data);
-		dispatch(AddData(data));
+
 		setTimeout(goHome, 4000);
 	};
 	return (
 		<>
 			<div className='h-screen w-full fm'>
 				<div className=' m-4'>
-					<h1 className='font-bold'>POST DATA </h1>
+					<h1 className='font-bold text-center text-2xl mb-4'> {id ? 'Update Data' : 'Post Data'} </h1>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<input className={inputDesign} placeholder='Full Name' type='text' {...register('name')} />
 						<p className='errMessage'>{errors.name?.message}</p>

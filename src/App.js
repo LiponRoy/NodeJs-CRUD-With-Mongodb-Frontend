@@ -4,16 +4,19 @@ import Home from './pages/Home';
 import PostData from './pages/PostData';
 import NotFound from './pages/NotFound';
 import ViewData from './pages/ViewData';
-import UpdateData from './pages/UpdateData';
+import InsertData from './pages/InsertData';
+import Navbar from './components/navBar/Navbar';
+// import UpdateData from './pages/UpdateData';
 function App() {
 	return (
 		<>
 			<Router>
+				<Navbar></Navbar>
 				<Routes>
 					<Route path='/' element={<Home />} />
-					<Route path='/postData' element={<PostData />} />
+					<Route path='/postData/:id' element={<InsertData />} />
 					<Route path='/viewData/:id' element={<ViewData />} />
-					<Route path='/updateData/:id' element={<UpdateData />} />
+					{/* <Route path='/updateData/:id' element={<InsertData />} /> */}
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</Router>

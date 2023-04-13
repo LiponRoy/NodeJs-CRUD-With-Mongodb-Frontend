@@ -53,11 +53,11 @@ export const deleteData = createAsyncThunk('instructor/deleteData', async (_id, 
 });
 
 // update
-export const updateData = createAsyncThunk('instructor/updateData', async (myData, { rejectWithValue }) => {
+export const updateData = createAsyncThunk('instructor/updateData', async (data, { rejectWithValue }) => {
 	try {
-		const { _id, name, email, phone, address, status } = myData;
+		const { _id, name, email, phone, address, status } = data;
 
-		const response = await axios.put('/data/update/' + _id, {
+		const response = await axios.put(`/data/update/${_id}`, {
 			name,
 			email,
 			phone,

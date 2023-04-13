@@ -22,13 +22,12 @@ const Alldata = () => {
 	}, [isError, message, dispatch]);
 
 	const dataAdd = () => {
-		navigate('/postData');
+		navigate('/postData/ADD');
 	};
 
 	return (
 		<div className=' m-14'>
-			<button onClick={() => dataAdd()}>Add Data</button>
-			<span className=' text-2xl'>Instractor data</span>
+			<span className=' text-2xl my-4 font-medium'>Instractor data</span>
 			{isLoading ? (
 				<div className=' h-[80vh] w-full fm'>
 					<CircularProgress color='inherit' />
