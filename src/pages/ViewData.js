@@ -30,10 +30,10 @@ const ViewData = () => {
 							<FaUserAlt size={94}></FaUserAlt>
 						</div>
 						<div className='flex flex-col justify-start gap-2'>
-							<span className=' text-4xl font-bold'>Name : {singleData?.name}</span>
-							<span className=' text-2xl font-bold'>Email : {singleData?.email}</span>
-							<span className=' text-2xl font-bold'>Address : {singleData?.address}</span>
-							<span className=' text-2xl font-bold'>Status : {singleData?.status}</span>
+							<span className=' text-2xl md:text-6xl font-bold'>Name : {singleData?.name}</span>
+							<span className=' text-xl md:text-4xl font-bold'>Email : {singleData?.email}</span>
+							<span className=' text-xl md:text-4xl font-bold'>Address : {singleData?.address}</span>
+							<span className=' text-xl md:text-4xl font-bold'>Status : {singleData?.status}</span>
 						</div>
 					</div>
 					<a onClick={() => navigate('/')} className='  cursor-pointer mt-2 p-2 text-[12px] border-2 border-gray-300'>

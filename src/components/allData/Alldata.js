@@ -26,15 +26,14 @@ const Alldata = () => {
 	};
 
 	return (
-		<div className=' m-14'>
-			<span className=' text-2xl my-4 font-medium'>Instractor data</span>
+		<div className='mx-10'>
 			{isLoading ? (
 				<div className=' h-[80vh] w-full fm'>
 					<CircularProgress color='inherit' />
 				</div>
 			) : (
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-					{dataAll && dataAll?.map((data) => <Data key={data._id} id={data._id} name={data.name} email={data.email} address={data.address} status={data.status}></Data>)}
+					{dataAll && dataAll?.map((data) => <Data key={data._id} id={data._id} name={data.name} email={data.email} phone={data.phone} address={data.address} status={data.status}></Data>)}
 				</div>
 			)}
 		</div>
