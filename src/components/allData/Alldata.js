@@ -1,33 +1,14 @@
 import React from 'react';
-import { Button, CircularProgress } from '@mui/material';
-import { useEffect } from 'react';
-import Axios from 'axios';
+import { CircularProgress } from '@mui/material';
 import Data from './Data';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getData } from '../../feature/InstructorSlice';
+import { useGetStudentsQuery } from '../../feature/rtkSlice';
 
 const Alldata = () => {
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const { dataAll, isLoading, isError, message } = useSelector((state) => state.InstructorReducer);
-
-	useEffect(() => {
-		if (isError) {
-			console.log(isError);
-		}
-		if (dataAll) {
-			dispatch(getData());
-		}
-	}, [isError, message, dispatch]);
-
-	const dataAdd = () => {
-		navigate('/postData/ADD');
-	};
+	const { data: dataAll, isFetching } = useGetStudentsQuery();
 
 	return (
 		<div className='mx-10'>
-			{isLoading ? (
+			{isFetching ? (
 				<div className=' h-[80vh] w-full fm'>
 					<CircularProgress color='inherit' />
 				</div>

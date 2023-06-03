@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getOneData } from '../feature/InstructorSlice';
 import { FaUserAlt, FaRegEnvelope, FaGlobe } from 'react-icons/fa';
-import { Button } from '@mui/material';
+import { useGetStudentByIdQuery } from '../feature/rtkSlice';
 
 const ViewData = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const { singleData, isLoading, isError, message } = useSelector((state) => state.InstructorReducer);
-	useEffect(() => {
-		if (isError) {
-			console.log(isError);
-		}
-		if (singleData) {
-			dispatch(getOneData(id));
-		}
-	}, [isError, message, dispatch]);
+	// RTK
+	const { data: singleData, isFetching } = useGetStudentByIdQuery(id);
 
 	return (
 		<div className=' h-screen w-full fm'>
-			{isLoading ? (
+			{isFetching ? (
 				<span>Loading...</span>
 			) : (
 				<div className=''>

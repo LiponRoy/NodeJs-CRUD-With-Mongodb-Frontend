@@ -1,17 +1,17 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import { FaUserAlt, FaRegEnvelope, FaGlobe, FaPhone, FaAngleDoubleRight } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { deleteData } from '../../feature/InstructorSlice';
 import Notiflix from 'notiflix';
+import { useDeleteStudentMutation } from '../../feature/rtkSlice';
 
 const Data = ({ id, name, email, phone, address, status }) => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	// RTK
+	const [deleteStudent, { isLoading, isSuccess }] = useDeleteStudentMutation();
 
-	const handleDelete = (myId) => {
-		dispatch(deleteData(myId));
+	const handleDelete = async (myId) => {
+		await deleteStudent(myId);
 	};
 
 	// for confirm dialogue
@@ -23,9 +23,9 @@ const Data = ({ id, name, email, phone, address, status }) => {
 			'NO',
 			function okCb() {
 				handleDelete(id);
-				setTimeout(() => {
-					window.location.reload();
-				}, 3000);
+				// setTimeout(() => {
+				// 	window.location.reload();
+				// }, 3000);
 			},
 			function cancelCb() {},
 			{

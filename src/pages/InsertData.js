@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AddData, getData, updateData } from '../feature/InstructorSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAddStudentMutation, useGetStudentsQuery, useUpdateStudentMutation } from '../feature/rtkSlice';
 
 const initialState = {
 	name: '',
@@ -13,25 +12,19 @@ const initialState = {
 
 const InsertData = () => {
 	const { id } = useParams();
-	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	// console.log(id);
-
-	const { dataAll, isLoading } = useSelector((state) => state.InstructorReducer);
+	// RTK all
+	const { data: dataAll } = useGetStudentsQuery();
+	const [addStudent, { isLoading: addLoading, isSuccess }] = useAddStudentMutation();
+	const [updateStudent, { isLoading: updateLoading, isSuccess: updateSuccess }] = useUpdateStudentMutation();
 
 	const singleProduct = dataAll.find((item) => item._id === id);
-
-	// const [product, setProduct] = useState(...initialState);
 
 	const [product, setProduct] = useState(() => {
 		const newState = detectForm(id, { ...initialState }, singleProduct);
 		return newState;
 	});
-
-	useEffect(() => {
-		dispatch(getData());
-	}, []);
 
 	function detectForm(id, f1, f2) {
 		if (id === 'ADD') {
@@ -46,22 +39,16 @@ const InsertData = () => {
 		// console.log(product);
 	};
 
-	const PostingData = (e) => {
+	const PostingData = async (e) => {
 		e.preventDefault();
-		dispatch(AddData(product));
-
-		setTimeout(() => {
-			navigate('/');
-		}, 500);
+		await addStudent(product);
+		navigate('/');
 	};
 
-	const EditData = (e) => {
+	const EditData = async (e) => {
 		e.preventDefault();
-		dispatch(updateData(product));
-
-		setTimeout(() => {
-			navigate('/');
-		}, 500);
+		await updateStudent(product);
+		navigate('/');
 	};
 
 	return (
@@ -84,11 +71,9 @@ const InsertData = () => {
 					<div className='my-2 '>
 						<input className={inputCls} type='text' placeholder='status' required name='status' value={product?.status} onChange={(e) => handleInputChange(e)} />
 					</div>
-					{/* <input type='number' placeholder='Product price' required name='price' value={product.price} onChange={(e) => handleInputChange(e)} />
-					<label>Product Company/Brand:</label>
-					<input type='text' placeholder='Product brand' required name='brand' value={product.brand} onChange={(e) => handleInputChange(e)} /> */}
-					<button disabled={isLoading} className={saveBtnCls}>
-						{isLoading ? '...loading' : detectForm(id, 'SUBMIT DATA', 'EDIT DATE')}
+
+					<button disabled={addLoading || updateLoading} className={saveBtnCls}>
+						{addLoading || updateLoading ? '...loading' : detectForm(id, 'SUBMIT DATA', 'EDIT DATE')}
 					</button>
 				</form>
 			</div>
