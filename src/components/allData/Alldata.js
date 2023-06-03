@@ -1,10 +1,10 @@
 import React from 'react';
 import { CircularProgress } from '@mui/material';
 import Data from './Data';
-import { useGetStudentsQuery } from '../../feature/rtkSlice';
+import { useGetInstructorsQuery } from '../../feature/instructorsApi';
 
 const Alldata = () => {
-	const { data: dataAll, isFetching } = useGetStudentsQuery();
+	const { data: dataAll, isFetching } = useGetInstructorsQuery();
 
 	return (
 		<div className='mx-10'>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaUserAlt, FaRegEnvelope, FaGlobe } from 'react-icons/fa';
-import { useGetStudentByIdQuery } from '../feature/rtkSlice';
+import { useGetInstructorByIdQuery } from '../feature/instructorsApi';
 
 const ViewData = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	// RTK
-	const { data: singleData, isFetching } = useGetStudentByIdQuery(id);
+	const { data: singleData, isFetching } = useGetInstructorByIdQuery(id);
 
 	return (
 		<div className=' h-screen w-full fm'>

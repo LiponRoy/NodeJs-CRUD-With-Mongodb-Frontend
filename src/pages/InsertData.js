@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAddStudentMutation, useGetStudentsQuery, useUpdateStudentMutation } from '../feature/rtkSlice';
+import { useAddInstructorMutation, useGetInstructorsQuery, useUpdateInstructorMutation } from '../feature/instructorsApi';
 
 const initialState = {
 	name: '',
@@ -15,9 +15,9 @@ const InsertData = () => {
 	const navigate = useNavigate();
 
 	// RTK all
-	const { data: dataAll } = useGetStudentsQuery();
-	const [addStudent, { isLoading: addLoading, isSuccess }] = useAddStudentMutation();
-	const [updateStudent, { isLoading: updateLoading, isSuccess: updateSuccess }] = useUpdateStudentMutation();
+	const { data: dataAll } = useGetInstructorsQuery();
+	const [addInstructor, { isLoading: addLoading, isSuccess }] = useAddInstructorMutation();
+	const [updateInstructor, { isLoading: updateLoading, isSuccess: updateSuccess }] = useUpdateInstructorMutation();
 
 	const singleProduct = dataAll.find((item) => item._id === id);
 
@@ -41,13 +41,13 @@ const InsertData = () => {
 
 	const PostingData = async (e) => {
 		e.preventDefault();
-		await addStudent(product);
+		await addInstructor(product);
 		navigate('/');
 	};
 
 	const EditData = async (e) => {
 		e.preventDefault();
-		await updateStudent(product);
+		await updateInstructor(product);
 		navigate('/');
 	};
 

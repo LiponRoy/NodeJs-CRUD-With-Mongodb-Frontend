@@ -3,15 +3,15 @@ import React from 'react';
 import { FaUserAlt, FaRegEnvelope, FaGlobe, FaPhone, FaAngleDoubleRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Notiflix from 'notiflix';
-import { useDeleteStudentMutation } from '../../feature/rtkSlice';
+import { useDeleteInstructorMutation } from '../../feature/instructorsApi';
 
 const Data = ({ id, name, email, phone, address, status }) => {
 	const navigate = useNavigate();
 	// RTK
-	const [deleteStudent, { isLoading, isSuccess }] = useDeleteStudentMutation();
+	const [deleteInstructor, { isLoading, isSuccess }] = useDeleteInstructorMutation();
 
 	const handleDelete = async (myId) => {
-		await deleteStudent(myId);
+		await deleteInstructor(myId);
 	};
 
 	// for confirm dialogue
