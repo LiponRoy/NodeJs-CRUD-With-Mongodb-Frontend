@@ -6,7 +6,7 @@ const Hero = () => {
 			<section class={heroContainer}>
 				<div class={gridLayout}>
 					<div class={leftSide}>
-						<p class='text-4xl font-bold text-xl md:text-4xl '>MERN STACK CRUD USING REDUX TOOLKIT</p>
+						<p class='text-4xl font-bold text-xl md:text-4xl '>MERN STACK CRUD USING RTK QUERY</p>
 						<span className=' text-2xl mb-1 font-medium'>(Instractor data)</span>
 					</div>
 					<div class={rightSide}>

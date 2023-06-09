@@ -38,7 +38,7 @@ const Data = ({ id, name, email, phone, address, status }) => {
 
 	return (
 		<div>
-			<div className=' bg-gray-700 hover:bg-gray-900 text-white shadow-md text-gray-700  p-5 my-5 flex flex-col rounded-md gap-1 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;'>
+			<div className=' bg-gray-700 hover:bg-gray-900 text-white shadow-md text-gray-700  p-5 my-4 flex flex-col rounded-md gap-1 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;'>
 				<FaUserAlt className=' mb-2' size={32}></FaUserAlt>
 				<span className=' text-2xl bg-yellow-600 p-1 rounded-md'>{name}</span>
 				<div className='flex items-center'>
